@@ -56,7 +56,7 @@ function komputer {
 	AI=0
 	while [ ${PLANSZA[AI]} == $GRACZ ] || [ ${PLANSZA[AI]} == $GRACZ_AI ]
 	do
-	AI=$((0+$RANDOM % 8))
+	AI=$((0+$RANDOM % 9))
 	done
 	
 	PLANSZA[$AI]=$GRACZ_AI
@@ -71,6 +71,7 @@ function sprawdz1 {
   sprawdz2 2 5 8
   sprawdz2 0 4 8
   sprawdz2 2 4 6
+  sprawdz_remis
 }
 
 function sprawdz2() {
@@ -78,6 +79,14 @@ function sprawdz2() {
  then
  KONIEC=1
  echo "Wygrał ${PLANSZA[$1]}"
+ fi
+}
+
+function sprawdz_remis {
+ if [[ ! " ${PLANSZA[*]} " =~ "*" ]]
+ then
+ KONIEC=1
+ echo "Remis"
  fi
 }
 
